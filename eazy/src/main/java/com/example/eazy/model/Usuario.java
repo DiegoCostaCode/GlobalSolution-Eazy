@@ -3,7 +3,9 @@ package com.example.eazy.model;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.mindrot.jbcrypt.BCrypt;
+
+import java.util.List;
 
 @Getter
 @Setter
@@ -21,22 +23,47 @@ public class Usuario {
     private String email;
 
     @Column(name = "telefone", unique = true)
-    private String telefonne;
+    private String telefone;
 
     @Column(name = "senha")
     private String senha;
 
-    @OneToOne
-    @JoinColumn(name = "id_potuacao")
-    private Potuacao potuacao;
+    @Column(name = "pontuacao")
+    private double pontuacao = 0.0;
+
+    @OneToMany(mappedBy = "usuario")
+    private List<UsuarioRecompensas> usuarioRecompensas;
+
+
+
+    public void removerPontuacao(double pontos) {
+        if (pontos > 0) {
+            this.pontuacao -= pontos;
+            if (this.pontuacao < 0) {
+                this.pontuacao = 0;
+            }
+        }
+    }
+
+    public void adicionarPontuacao(double pontos) {
+        if (pontos > 0) {
+            this.pontuacao += pontos;
+        }
+    }
 
     public void setSenha(String senha) {
-        BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
-        this.senha = passwordEncoder.encode(senha);
+        this.senha = hashSenha(senha);
+    }
+
+    private String hashSenha(String senha) {
+
+        return BCrypt.hashpw(senha, BCrypt.gensalt());
     }
 
     public boolean verificarSenha(String senha) {
-        BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
-        return passwordEncoder.matches(senha, this.senha);
+
+        return BCrypt.checkpw(senha, this.senha);
     }
+
+
 }

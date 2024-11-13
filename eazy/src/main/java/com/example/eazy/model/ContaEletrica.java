@@ -6,16 +6,16 @@ import lombok.Setter;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import java.sql.Date;
-import java.time.YearMonth;
+import java.text.SimpleDateFormat;
 
 @Getter
 @Setter
 @Entity
 @Table(name = "gs_conta_eletrica")
-public class Conta_eletrica {
+public class ContaEletrica {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private long Id;
+    private long id;
 
     @Column(name = "kwh")
     private double kwh;
@@ -26,4 +26,6 @@ public class Conta_eletrica {
     @DateTimeFormat(pattern = "MM-dd")
     @Column(name = "data", unique = true)
     private Date data;
+
+
 }
