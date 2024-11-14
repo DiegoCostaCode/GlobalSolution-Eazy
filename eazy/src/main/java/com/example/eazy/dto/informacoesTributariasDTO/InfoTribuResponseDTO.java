@@ -4,7 +4,7 @@ import com.example.eazy.model.Enum_estado;
 
 import java.util.Date;
 
-public record InfoTributariasResponseDTO
+public record InfoTribuResponseDTO
         (
                 long id,
                 Enum_estado estado,

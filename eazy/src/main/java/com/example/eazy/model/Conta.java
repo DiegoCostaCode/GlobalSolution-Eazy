@@ -22,9 +22,12 @@ public class Conta {
     @Column(name = "valor")
     private double valor;
 
-    @DateTimeFormat(pattern = "MM-dd")
+    @DateTimeFormat(pattern = "MM-yyyy")
     @Column(name = "data", unique = true)
     private Date data;
 
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "id_usario")
+    private Usuario usuario;
 
 }

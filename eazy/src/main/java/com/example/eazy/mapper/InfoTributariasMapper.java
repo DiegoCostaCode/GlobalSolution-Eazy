@@ -1,29 +1,26 @@
 package com.example.eazy.mapper;
 
-import com.example.eazy.dto.informacoesTributariasDTO.InfoTributariasRequestDTO;
-import com.example.eazy.dto.informacoesTributariasDTO.InfoTributariasResponseDTO;
-import com.example.eazy.dto.usuario.UsuarioRequestDTO;
-import com.example.eazy.dto.usuario.UsuarioResponseDTO;
+import com.example.eazy.dto.informacoesTributariasDTO.InfoTribuRequestDTO;
+import com.example.eazy.dto.informacoesTributariasDTO.InfoTribuResponseDTO;
 import com.example.eazy.model.InformacoesTributarias;
-import com.example.eazy.model.Usuario;
 import org.springframework.stereotype.Service;
 
 @Service
 public class InfoTributariasMapper {
 
-    public InformacoesTributarias requestToInfoTributarias(InfoTributariasRequestDTO infoTributariasRequestDTO)
+    public InformacoesTributarias requestToInfoTributarias(InfoTribuRequestDTO infoTribuRequestDTO)
     {
         InformacoesTributarias informacoesTributarias = new InformacoesTributarias();
 
-        informacoesTributarias.setEstado(infoTributariasRequestDTO.estado());
-        informacoesTributarias.setValorKwh(infoTributariasRequestDTO.valorKwh());
+        informacoesTributarias.setEstado(infoTribuRequestDTO.estado());
+        informacoesTributarias.setValorKwh(infoTribuRequestDTO.valorKwh());
 
         return informacoesTributarias;
     }
 
-    public InfoTributariasResponseDTO infoTributariasResponseDTO(InformacoesTributarias informacoesTributarias)
+    public InfoTribuResponseDTO infoTributariasResponseDTO(InformacoesTributarias informacoesTributarias)
     {
-        return new InfoTributariasResponseDTO(
+        return new InfoTribuResponseDTO(
                 informacoesTributarias.getId(),
                 informacoesTributarias.getEstado(),
                 informacoesTributarias.getValorKwh(),

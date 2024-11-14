@@ -18,7 +18,7 @@ public class InformacoesTributarias {
     private Long id;
 
     @Enumerated(EnumType.STRING)
-    @Column(name = "estado")
+    @Column(name = "estado", unique = true)
     private Enum_estado estado;
 
     @Column(name = "valorKwh")

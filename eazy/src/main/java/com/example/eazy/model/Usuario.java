@@ -28,6 +28,7 @@ public class Usuario {
     @Column(name = "senha")
     private String senha;
 
+
     public void setSenha(String senha) {
         this.senha = hashSenha(senha);
     }
