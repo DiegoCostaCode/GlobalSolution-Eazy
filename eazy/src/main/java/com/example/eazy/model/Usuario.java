@@ -28,29 +28,6 @@ public class Usuario {
     @Column(name = "senha")
     private String senha;
 
-    @Column(name = "pontuacao")
-    private double pontuacao = 0.0;
-
-    @OneToMany(mappedBy = "usuario")
-    private List<UsuarioRecompensas> usuarioRecompensas;
-
-
-
-    public void removerPontuacao(double pontos) {
-        if (pontos > 0) {
-            this.pontuacao -= pontos;
-            if (this.pontuacao < 0) {
-                this.pontuacao = 0;
-            }
-        }
-    }
-
-    public void adicionarPontuacao(double pontos) {
-        if (pontos > 0) {
-            this.pontuacao += pontos;
-        }
-    }
-
     public void setSenha(String senha) {
         this.senha = hashSenha(senha);
     }

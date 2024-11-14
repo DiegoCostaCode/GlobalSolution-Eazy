@@ -10,6 +10,7 @@ public class UsuarioMapper {
     public Usuario requestToUsuario(UsuarioRequestDTO usuarioRequestDTO)
     {
         Usuario usuario = new Usuario();
+
         usuario.setUsuario(usuarioRequestDTO.usuario());
         usuario.setEmail(usuarioRequestDTO.email());
         usuario.setTelefone(usuarioRequestDTO.telefone());
@@ -24,8 +25,7 @@ public class UsuarioMapper {
                 usuario.getId(),
                 usuario.getUsuario(),
                 usuario.getEmail(),
-                usuario.getTelefone(),
-                usuario.getPontuacao()
+                usuario.getTelefone()
         );
     }
 }

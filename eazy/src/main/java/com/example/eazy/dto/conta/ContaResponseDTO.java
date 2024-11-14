@@ -8,5 +8,4 @@ public record ContaResponseDTO
                 double kwh,
                 double valor,
                 Date data
-        ){
-}
+        ){}

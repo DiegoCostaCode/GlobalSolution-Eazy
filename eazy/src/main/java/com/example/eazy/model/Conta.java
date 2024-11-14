@@ -6,13 +6,12 @@ import lombok.Setter;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import java.sql.Date;
-import java.text.SimpleDateFormat;
 
 @Getter
 @Setter
 @Entity
-@Table(name = "gs_conta_eletrica")
-public class ContaEletrica {
+@Table(name = "gs_conta")
+public class Conta {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
