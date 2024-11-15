@@ -7,6 +7,7 @@ import lombok.Setter;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import java.sql.Date;
+import java.time.LocalDateTime;
 
 @Getter
 @Setter
@@ -24,7 +25,16 @@ public class InformacoesTributarias {
     @Column(name = "valorKwh")
     private double valorKwh;
 
-    @DateTimeFormat(pattern = "dd/MM/yyyy")
     @Column(name = "ultimaAtualizacao")
-    private Date ultimaAtualizacao = new Date(System.currentTimeMillis());
+    private Date ultimaAtualizacao;
+
+    @PrePersist
+    public void prePersist() {
+        this.ultimaAtualizacao = new Date(System.currentTimeMillis());
+    }
+
+    @PreUpdate
+    public void preUpdate() {
+        this.ultimaAtualizacao = new Date(System.currentTimeMillis());
+    }
 }
