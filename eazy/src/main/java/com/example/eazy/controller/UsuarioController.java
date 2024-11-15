@@ -7,6 +7,12 @@ import com.example.eazy.dto.usuario.UsuarioResponseDTO;
 import com.example.eazy.mapper.UsuarioMapper;
 import com.example.eazy.model.Usuario;
 import com.example.eazy.repository.UsuarioRepository;
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.media.Content;
+import io.swagger.v3.oas.annotations.media.Schema;
+import io.swagger.v3.oas.annotations.responses.ApiResponse;
+import io.swagger.v3.oas.annotations.responses.ApiResponses;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.hateoas.EntityModel;
@@ -19,6 +25,7 @@ import static org.springframework.hateoas.server.mvc.WebMvcLinkBuilder.methodOn;
 
 @RestController
 @RequestMapping(value = "/usuario", produces = {"application/json"})
+@Tag(name = "Usuario", description = "CRUD de usuario, e sistema de Login")
 public class UsuarioController {
 
     @Autowired
@@ -27,6 +34,12 @@ public class UsuarioController {
     @Autowired
     private UsuarioRepository usuarioRepository;
 
+    @Operation(summary = "Trás um usuário pelo ID")
+    @ApiResponses(value = {
+            @ApiResponse(responseCode = "200", description = "Usuário encontrado com sucesso!"),
+            @ApiResponse(responseCode = "400", description = "Usuário não encontrado.",
+                    content = @Content(schema = @Schema()))
+    })
     @GetMapping(value = "/{idUsuario}", produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<EntityModel<UsuarioResponseDTO>> findUserById(@PathVariable Long idUsuario) {
         Usuario usuarioEncontrado = usuarioRepository.findById(idUsuario)
@@ -43,6 +56,12 @@ public class UsuarioController {
                 ));
     }
 
+    @Operation(summary = "Cadastra um usuário e salva no banco de dados")
+    @ApiResponses(value = {
+            @ApiResponse(responseCode = "201", description = "Usuário cadastro com sucesso"),
+            @ApiResponse(responseCode = "400", description = "Atributos informados são inválidos",
+                    content = @Content(schema = @Schema()))
+    })
     @PostMapping(produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<UsuarioResponseDTO> createUsuario(@Valid @RequestBody UsuarioRequestDTO usuarioRequestDTO) {
         Usuario usuarioConvertido = usuarioMapper.requestToUsuario(usuarioRequestDTO);
@@ -55,6 +74,15 @@ public class UsuarioController {
         return new ResponseEntity<>(usuarioResponseDTO, HttpStatus.CREATED);
     }
 
+    @Operation(summary = "Login de usuário")
+    @ApiResponses(value = {
+            @ApiResponse(responseCode = "200", description = "Login feito com sucesso!"),
+            @ApiResponse(responseCode = "400", description = "Usuário não encontrado.",
+                    content = @Content(schema = @Schema())),
+            @ApiResponse(responseCode = "401", description = "Senha incorreta.",
+                    content = @Content(schema = @Schema())),
+
+    })
     @PostMapping(value = "/login", produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<String> login(@Valid @RequestBody UsuarioLoginDTO usuarioLoginDTO) {
 
@@ -62,12 +90,18 @@ public class UsuarioController {
                 .orElseThrow(() -> new RuntimeException("Usuário não encontrado"));
 
         if (!usuarioEncontrado.verificarSenha(usuarioLoginDTO.senha())) {
-            return new ResponseEntity<String>("Login falhou!",HttpStatus.UNAUTHORIZED);
+            return new ResponseEntity<String>("Senha incorreta!",HttpStatus.UNAUTHORIZED);
         }
 
         return new ResponseEntity<String>("Login bem-sucedido", HttpStatus.OK);
     }
 
+    @Operation(summary = "Atualiza informações do usuário")
+    @ApiResponses(value = {
+            @ApiResponse(responseCode = "204", description = "Usuário atualizado com sucesso!"),
+            @ApiResponse(responseCode = "400", description = "Usuário não encontrado.",
+                    content = @Content(schema = @Schema()))
+    })
     @PutMapping(value = ("/{idUsuario}"), produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<UsuarioResponseDTO> updateUsuario(@PathVariable Long idUsuario, @Valid @RequestBody UsuarioRequestDTO usuarioRequestDTO) {
         Usuario usuarioEncontrado = usuarioRepository.findById(idUsuario)
@@ -87,6 +121,13 @@ public class UsuarioController {
         return new ResponseEntity<>(usuarioResponseDTO, HttpStatus.NO_CONTENT);
     }
 
+    @Operation(summary = "Deleta um usuário")
+    @ApiResponses(value = {
+            @ApiResponse(responseCode = "200", description = "Usuário deletado com sucesso!"),
+            @ApiResponse(responseCode = "400", description = "Usuário não encontrado.",
+                    content = @Content(schema = @Schema()))
+
+    })
     @DeleteMapping(value = "/{idUsuario}", produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<String> deleteUsuario(@PathVariable Long idUsuario) {
         Usuario usuarioEncontrado = usuarioRepository.findById(idUsuario)

@@ -10,6 +10,12 @@ import com.example.eazy.model.Enum_estado;
 import com.example.eazy.model.InformacoesTributarias;
 import com.example.eazy.model.Usuario;
 import com.example.eazy.repository.InfoTributariaRepository;
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.media.Content;
+import io.swagger.v3.oas.annotations.media.Schema;
+import io.swagger.v3.oas.annotations.responses.ApiResponse;
+import io.swagger.v3.oas.annotations.responses.ApiResponses;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.hateoas.EntityModel;
@@ -26,6 +32,7 @@ import static org.springframework.hateoas.server.mvc.WebMvcLinkBuilder.methodOn;
 
 @RestController
 @RequestMapping(value = "/infoTriburaria", produces = {"application/json"})
+@Tag(name = "Informações Tributárias", description = "CRUD de informações tributárias")
 public class InfoTributariasController {
 
     @Autowired
@@ -35,6 +42,13 @@ public class InfoTributariasController {
     private InfoTributariasMapper infoTributariasMapper;
 
 
+    @Operation(summary = "Trás uma informação tributária pelo ID")
+    @ApiResponses(value = {
+            @ApiResponse(responseCode = "200", description = "Informação tributária encontrada com sucesso!"),
+            @ApiResponse(responseCode = "400", description = "Informação tributária não encontrada.",
+                    content = @Content(schema = @Schema()))
+
+    })
     @GetMapping(value = "/{idInfosTribu}", produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<EntityModel<InfoTribuResponseDTO>> findInformacoesById(@PathVariable Long idInfosTribu) {
         InformacoesTributarias infoTributariaEncontrada = infoTributariaRepository.findById(idInfosTribu)
@@ -53,6 +67,13 @@ public class InfoTributariasController {
                 ));
     }
 
+    @Operation(summary = "Trás uma informação tributária pelo estado")
+    @ApiResponses(value = {
+            @ApiResponse(responseCode = "200", description = "Informação tributária encontrada com sucesso!"),
+            @ApiResponse(responseCode = "400", description = "Informação tributária não encontrada.",
+                    content = @Content(schema = @Schema()))
+
+    })
     @GetMapping(value = "/estado/{estado}", produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<EntityModel<InfoTribuResponseDTO>> findInformacoesByEstado(@PathVariable Enum_estado estado) {
         InformacoesTributarias infoTributariaEncontrada = infoTributariaRepository.findByEstado(estado)
@@ -71,8 +92,13 @@ public class InfoTributariasController {
                 ));
     }
 
+    @Operation(summary = "Trás todas as informações tributárias")
+    @ApiResponses(value = {
+            @ApiResponse(responseCode = "200", description = "Informações tributárias encontradas com sucesso!"),
+    })
     @GetMapping(produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<List<EntityModel<InfoTribuResponseDTO>>> showInfosTributarias() {
+
     List<InformacoesTributarias> infoTributarias = infoTributariaRepository.findAll();
 
     List<EntityModel<InfoTribuResponseDTO>> infoTributariasResponse = infoTributarias.stream()
@@ -90,6 +116,12 @@ public class InfoTributariasController {
     return new ResponseEntity<>(infoTributariasResponse, HttpStatus.OK);
 }
 
+    @Operation(summary = "Cadastra informações tributárias")
+    @ApiResponses(value = {
+            @ApiResponse(responseCode = "201", description = "Informações tributárias encontradas com sucesso!"),
+            @ApiResponse(responseCode = "400", description = "Informações tributárias não encontrada.",
+                    content = @Content(schema = @Schema()))
+    })
     @PostMapping(produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<InfoTribuResponseDTO> createInfosTributaria(@Valid @RequestBody InfoTribuRequestDTO infoTribuRequestDTO) {
 
@@ -102,6 +134,12 @@ public class InfoTributariasController {
         return new ResponseEntity<>(infoTribuResponseDTO, HttpStatus.CREATED);
     }
 
+    @Operation(summary = "Atualiza informações tributárias")
+    @ApiResponses(value = {
+            @ApiResponse(responseCode = "204", description = "Informações tributárias atualizadas com sucesso!"),
+            @ApiResponse(responseCode = "400", description = "Informações tributárias não encontrada.",
+                    content = @Content(schema = @Schema()))
+    })
     @PutMapping(value = ("/{idInfosTribu}"), produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<InfoTribuResponseDTO> updateInfosTributaria(@PathVariable Long idInfosTribu, @Valid @RequestBody InfoTribuRequestDTO infoTribuRequestDTO) {
 
@@ -117,6 +155,12 @@ public class InfoTributariasController {
         return new ResponseEntity<>(infoTribuResponseDTO, HttpStatus.NO_CONTENT);
     }
 
+    @Operation(summary = "Deleta informações tributárias")
+    @ApiResponses(value = {
+            @ApiResponse(responseCode = "200", description = "Informações tributárias deletada com sucesso!"),
+            @ApiResponse(responseCode = "400", description = "Informações tributárias não encontrada.",
+                    content = @Content(schema = @Schema()))
+    })
     @DeleteMapping(value = "/{idInfosTribu}", produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<String> deleteInfoTributaria(@PathVariable Long idInfosTribu) {
 
