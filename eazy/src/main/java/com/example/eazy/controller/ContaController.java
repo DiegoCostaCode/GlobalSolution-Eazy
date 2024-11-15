@@ -60,6 +60,7 @@ public class ContaController {
         return ResponseEntity.ok(
                 EntityModel.of(contaResponseDTO,
                         linkTo(methodOn(ContaController.class).findContaById(idConta)).withSelfRel(),
+                        linkTo(methodOn(ContaController.class).findContaByIdUsuario(null)).withRel("GET"),
                         linkTo(methodOn(ContaController.class).createConta(null,null)).withRel("POST"),
                         linkTo(methodOn(ContaController.class).updateConta(idConta, null)).withRel("PUT"),
                         linkTo(methodOn(ContaController.class).deleteConta(idConta)).withRel("DELETE")
@@ -72,10 +73,10 @@ public class ContaController {
             @ApiResponse(responseCode = "400", description = "Nenhuma conta encontrada.",
                     content = @Content(schema = @Schema()))
     })
-    @GetMapping(value = "/usuario/{idUsuario}", produces = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<List<EntityModel<ContaResponseDTO>>> findContaByIdUsuario(@PathVariable Long idUsuario) {
+    @GetMapping(value = "/usuario/{usuario}", produces = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseEntity<List<EntityModel<ContaResponseDTO>>> findContaByIdUsuario(@PathVariable Usuario usuario) {
 
-        List<Conta> contas = contaRepository.findByIdUsuario(idUsuario);
+        List<Conta> contas = contaRepository.findByUsuario(usuario);
 
         if (contas.isEmpty()) {
             throw new RuntimeException("Nenhuma conta encontrada para o usuário");
@@ -85,11 +86,12 @@ public class ContaController {
                 .map(conta -> {
                     ContaResponseDTO contaResponse = contaMapper.contaEletricaToResponse(conta);
                     return EntityModel.of(contaResponse,
-                            linkTo(methodOn(ContaController.class).findContaById(contaResponse.id())).withSelfRel(),
+                            linkTo(methodOn(ContaController.class).findContaByIdUsuario(null)).withSelfRel(),
+                            linkTo(methodOn(ContaController.class).findContaById(contaResponse.id())).withRel("GET"),
                             linkTo(methodOn(ContaController.class).createConta(null, null)).withRel("POST"),
                             linkTo(methodOn(ContaController.class).updateConta(contaResponse.id(), null)).withRel("PUT"),
-                            linkTo(methodOn(ContaController.class).deleteConta(contaResponse.id())).withRel("DELETE"),
-                            linkTo(methodOn(ContaController.class).findContaByIdUsuario(contaResponse.usuario().id())).withRel("GET"));
+                            linkTo(methodOn(ContaController.class).deleteConta(contaResponse.id())).withRel("DELETE"));
+
                 }).collect(Collectors.toList());
         return new ResponseEntity<>(contaResponseDTO, HttpStatus.OK);
     }
