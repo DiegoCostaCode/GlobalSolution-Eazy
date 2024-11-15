@@ -1,12 +1,11 @@
 package com.example.eazy.controller;
 
 
-import com.example.eazy.dto.usuario.UsuarioLoginDTO;
-import com.example.eazy.dto.usuario.UsuarioRequestDTO;
-import com.example.eazy.dto.usuario.UsuarioResponseDTO;
+import com.example.eazy.dto.usuario.*;
 import com.example.eazy.mapper.UsuarioMapper;
 import com.example.eazy.model.Usuario;
 import com.example.eazy.repository.UsuarioRepository;
+import com.example.eazy.service.UsuarioService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.media.Content;
 import io.swagger.v3.oas.annotations.media.Schema;
@@ -33,6 +32,9 @@ public class UsuarioController {
 
     @Autowired
     private UsuarioRepository usuarioRepository;
+
+    @Autowired
+    private UsuarioService usuarioService;
 
     @Operation(summary = "Trás um usuário pelo ID")
     @ApiResponses(value = {
@@ -137,4 +139,25 @@ public class UsuarioController {
 
         return new ResponseEntity<>("Usuário deletado com sucesso!", HttpStatus.OK);
     }
+
+    @GetMapping(value = "/meu-consumo/{idUsuario}", produces = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseEntity<UsuarioConsumoTotalDTO> getConsumoEValorTotal(@PathVariable Long idUsuario) {
+        UsuarioConsumoTotalDTO usuarioConsumoTotalDTO = usuarioService.consumoEValorTotal(idUsuario);
+        return new ResponseEntity<>(usuarioConsumoTotalDTO,HttpStatus.OK);
+    }
+
+    @GetMapping(value = "/meu-consumo/menor/{idUsuario}", produces = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseEntity<ConsumoMenorMaiorDTO> getMenorConsumo(@PathVariable Long idUsuario) {
+        ConsumoMenorMaiorDTO consumoMenor = usuarioService.menorConsumo(idUsuario);
+        return new ResponseEntity<>(consumoMenor,HttpStatus.OK);
+    }
+
+    @GetMapping(value = "/meu-consumo/maior/{idUsuario}", produces = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseEntity<ConsumoMenorMaiorDTO> getMaiorGasto(@PathVariable Long idUsuario) {
+        ConsumoMenorMaiorDTO consumoMaior = usuarioService.maiorConsumo(idUsuario);
+        return new ResponseEntity<>(consumoMaior,HttpStatus.OK);
+    }
+
 }
+
+

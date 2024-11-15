@@ -26,7 +26,7 @@ public class Conta {
     private Date data;
 
     @ManyToOne
-    @JoinColumn(name = "id_usario")
+    @JoinColumn(name = "id_usuario")
     private Usuario usuario;
 
 }
