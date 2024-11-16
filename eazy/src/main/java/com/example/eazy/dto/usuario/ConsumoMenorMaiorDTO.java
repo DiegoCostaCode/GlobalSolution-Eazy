@@ -7,5 +7,4 @@ public record ConsumoMenorMaiorDTO
         (
                 Double gasto,
                 Date data
-        ) {
-}
+        ) { }

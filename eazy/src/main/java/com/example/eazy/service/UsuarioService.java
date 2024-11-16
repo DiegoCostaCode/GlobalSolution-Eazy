@@ -23,8 +23,8 @@ public class UsuarioService {
         query.registerStoredProcedureParameter("p_id_usuario", Long.class, jakarta.persistence.ParameterMode.IN);
         query.registerStoredProcedureParameter("p_consumo_total", Double.class, jakarta.persistence.ParameterMode.OUT);
         query.registerStoredProcedureParameter("p_valor_total", Double.class, jakarta.persistence.ParameterMode.OUT);
-        query.registerStoredProcedureParameter("p_data_primeira_conta", Double.class, jakarta.persistence.ParameterMode.OUT);
-        query.registerStoredProcedureParameter("p_data_primeira_conta", Double.class, jakarta.persistence.ParameterMode.OUT);
+        query.registerStoredProcedureParameter("p_data_primeira_conta", Date.class, jakarta.persistence.ParameterMode.OUT);
+        query.registerStoredProcedureParameter("p_data_ultima_conta", Date.class, jakarta.persistence.ParameterMode.OUT);
         query.setParameter("p_id_usuario", idUsuario);
 
         query.execute();
@@ -32,7 +32,7 @@ public class UsuarioService {
         Double consumoTotal = (Double) query.getOutputParameterValue("p_consumo_total");
         Double valorTotal = (Double) query.getOutputParameterValue("p_valor_total");
         Date primeiraConta = (Date) query.getOutputParameterValue("p_data_primeira_conta");
-        Date ultimaConta = (Date) query.getOutputParameterValue("p_data_primeira_conta");
+        Date ultimaConta = (Date) query.getOutputParameterValue("p_data_ultima_conta");
 
         UsuarioConsumoTotalDTO usuarioConsumoTotalDTO = new UsuarioConsumoTotalDTO(consumoTotal, valorTotal, primeiraConta, ultimaConta);
 
@@ -40,7 +40,7 @@ public class UsuarioService {
     }
 
     @Transactional
-    public ConsumoMenorMaiorDTO maiorConsumo(Long idUsuario) {
+    public ConsumoMenorMaiorDTO menorConsumo(Long idUsuario) {
         StoredProcedureQuery query = entityManager.createStoredProcedureQuery("SP_CONSULTAR_MENOR_GASTO_HISTORICO_POR_USUARIO");
         query.registerStoredProcedureParameter("p_id_usuario", Long.class, jakarta.persistence.ParameterMode.IN);
         query.registerStoredProcedureParameter("p_menor_gasto", Double.class, jakarta.persistence.ParameterMode.OUT);
@@ -58,8 +58,8 @@ public class UsuarioService {
     }
 
     @Transactional
-    public ConsumoMenorMaiorDTO menorConsumo(Long idUsuario) {
-        StoredProcedureQuery query = entityManager.createStoredProcedureQuery("SP_CONSULTAR_MENOR_GASTO_HISTORICO_POR_USUARIO");
+    public ConsumoMenorMaiorDTO maiorConsumo(Long idUsuario) {
+        StoredProcedureQuery query = entityManager.createStoredProcedureQuery("SP_CONSULTAR_MAIOR_GASTO_HISTORICO_POR_USUARIO");
         query.registerStoredProcedureParameter("p_id_usuario", Long.class, jakarta.persistence.ParameterMode.IN);
         query.registerStoredProcedureParameter("p_maior_gasto", Double.class, jakarta.persistence.ParameterMode.OUT);
         query.registerStoredProcedureParameter("p_data_maior_gasto", Date.class, jakarta.persistence.ParameterMode.OUT);

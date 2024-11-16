@@ -6,7 +6,6 @@ public record UsuarioConsumoTotalDTO
         (
                 Double TotalKwhConsumo,
                 Double ValorGastoEmReais,
-                Date DesDe,
+                Date De,
                 Date Ate
-        ) {
-}
+        ){}

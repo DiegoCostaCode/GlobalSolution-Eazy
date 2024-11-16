@@ -157,7 +157,6 @@ public class UsuarioController {
         ConsumoMenorMaiorDTO consumoMaior = usuarioService.maiorConsumo(idUsuario);
         return new ResponseEntity<>(consumoMaior,HttpStatus.OK);
     }
-
 }
 
 
