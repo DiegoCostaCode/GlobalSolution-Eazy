@@ -88,7 +88,7 @@ public class UsuarioController {
     @PostMapping(value = "/login", produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<String> login(@Valid @RequestBody UsuarioLoginDTO usuarioLoginDTO) {
 
-        Usuario usuarioEncontrado = usuarioRepository.findByEmail(usuarioLoginDTO.email())
+        Usuario usuarioEncontrado = usuarioRepository.findByEmail(usuarioLoginDTO.email());
 
         if (usuarioEncontrado == null) {
             return new ResponseEntity<String>("Nenhum usuário com este e-mail!",HttpStatus.BAD_REQUEST);
