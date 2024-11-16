@@ -89,7 +89,10 @@ public class UsuarioController {
     public ResponseEntity<String> login(@Valid @RequestBody UsuarioLoginDTO usuarioLoginDTO) {
 
         Usuario usuarioEncontrado = usuarioRepository.findByEmail(usuarioLoginDTO.email())
-                .orElseThrow(() -> new RuntimeException("Usuário não encontrado"));
+
+        if (usuarioEncontrado == null) {
+            return new ResponseEntity<String>("Nenhum usuário com este e-mail!",HttpStatus.BAD_REQUEST);
+        }
 
         if (!usuarioEncontrado.verificarSenha(usuarioLoginDTO.senha())) {
             return new ResponseEntity<String>("Senha incorreta!",HttpStatus.UNAUTHORIZED);
