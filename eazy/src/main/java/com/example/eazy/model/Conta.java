@@ -22,7 +22,7 @@ public class Conta {
     @Column(name = "valor")
     private double valor;
 
-    @Column(name = "data", unique = true)
+    @Column(name = "data")
     private Date data;
 
     @ManyToOne
