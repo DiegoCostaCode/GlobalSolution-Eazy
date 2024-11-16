@@ -19,6 +19,9 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.Optional;
+
 import static org.springframework.hateoas.server.mvc.WebMvcLinkBuilder.linkTo;
 import static org.springframework.hateoas.server.mvc.WebMvcLinkBuilder.methodOn;
 
@@ -88,13 +91,13 @@ public class UsuarioController {
     @PostMapping(value = "/login", produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<String> login(@Valid @RequestBody UsuarioLoginDTO usuarioLoginDTO) {
 
-        Usuario usuarioEncontrado = usuarioRepository.findByEmail(usuarioLoginDTO.email());
+        Optional<Usuario> usuarioEncontrado = usuarioRepository.findByEmail(usuarioLoginDTO.email());
 
-        if (usuarioEncontrado == null) {
+        if (usuarioEncontrado.isEmpty()) {
             return new ResponseEntity<String>("Nenhum usuário com este e-mail!",HttpStatus.BAD_REQUEST);
         }
 
-        if (!usuarioEncontrado.verificarSenha(usuarioLoginDTO.senha())) {
+        if (!usuarioEncontrado.get().verificarSenha(usuarioLoginDTO.senha())) {
             return new ResponseEntity<String>("Senha incorreta!",HttpStatus.UNAUTHORIZED);
         }
 
