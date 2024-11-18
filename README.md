@@ -20,9 +20,9 @@ Além disso, **nossa plataforma entrega insights sobre como ele poderia economiz
 
 Acreditamos firmemennte que nosso aplicativo é o ponta pé inicial para alguém ter um olhar mais cuidadoso com seu dinheiro, e o planeta em que vivemos. Mostrando que pode ser mais **Eazy** do que você pensa mudar o rumo do planeta.
 
-Você pode ver o nosso Pitch aqui: [www.youtube.com](https://www.youtube.com/watch?v=sn--dy2o7Xo)
+Você pode ver o nosso Pitch aqui: [pitch](https://www.youtube.com/watch?v=l5fuZtikMCA&list=PLNpYt22sUw3VJftQ8ltlV-7C0Aayi30p3&index=1)
 
-E, ver o teste da API aqui: [www.youtube.com](https://www.youtube.com/watch?v=sn--dy2o7Xo)
+E, ver o teste da API aqui: [testando na VM](https://www.youtube.com/watch?v=Y0TDjuulEb4&list=PLNpYt22sUw3VJftQ8ltlV-7C0Aayi30p3&index=4)
 
 # Detalhes técnicos do projeto
 
