@@ -30,7 +30,8 @@ E, ver o teste da API aqui: [www.youtube.com](https://www.youtube.com/watch?v=sn
 [Figma de Mobile](https://www.figma.com/design/jOBzPXopQbuF1WyMb7BpNz/Eazy---Energia?t=bjPi5ig1kgWvlmyI-1)
 
 ## Modelo banco de dados
-![image](https://github.com/user-attachments/assets/15693333-73ed-48ab-940f-fe8e85f95dc4)
+![image](https://github.com/user-attachments/assets/62261769-d39b-4ee1-851d-fc789cf4db3a)
+
 
 ## Endpoints
 
