@@ -37,7 +37,8 @@ public class ContaMapper {
                 usuario.getId(),
                 usuario.getUsuario(),
                 usuario.getEmail(),
-                usuario.getTelefone()
+                usuario.getTelefone(),
+                usuario.getInformacoesTributarias()
         );
     }
 

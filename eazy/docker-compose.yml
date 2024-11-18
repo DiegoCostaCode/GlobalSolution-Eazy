@@ -10,9 +10,9 @@ services:
     depends_on:
       - oracle-db
     environment:
-      SPRING_DATASOURCE_URL: jdbc:oracle:thin:@oracle.fiap.com.br:1521:orcl
-      SPRING_DATASOURCE_USERNAME: RM552648  
-      SPRING_DATASOURCE_PASSWORD: fiap24
+      SPRING_DATASOURCE_URL: 
+      SPRING_DATASOURCE_USERNAME:   
+      SPRING_DATASOURCE_PASSWORD: 
     networks:
       - app-network
     deploy:
@@ -27,7 +27,7 @@ services:
       - "1521:1521"
     environment:
       ORACLE_ALLOW_REMOTE: "true"
-      ORACLE_PASSWORD: fiap24
+      ORACLE_PASSWORD: 
     volumes:
       - oracle-data:/u01/app/oracle
     networks:

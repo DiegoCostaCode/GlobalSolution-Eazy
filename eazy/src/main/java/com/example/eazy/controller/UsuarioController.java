@@ -2,8 +2,11 @@ package com.example.eazy.controller;
 
 
 import com.example.eazy.dto.usuario.*;
+import com.example.eazy.mapper.InfoTributariasMapper;
 import com.example.eazy.mapper.UsuarioMapper;
+import com.example.eazy.model.InformacoesTributarias;
 import com.example.eazy.model.Usuario;
+import com.example.eazy.repository.InfoTributariaRepository;
 import com.example.eazy.repository.UsuarioRepository;
 import com.example.eazy.service.UsuarioService;
 import io.swagger.v3.oas.annotations.Operation;
@@ -38,6 +41,10 @@ public class UsuarioController {
 
     @Autowired
     private UsuarioService usuarioService;
+    @Autowired
+    private InfoTributariasMapper infoTributariasMapper;
+    @Autowired
+    private InfoTributariaRepository infoTributariaRepository;
 
     @Operation(summary = "Trás um usuário pelo ID")
     @ApiResponses(value = {
@@ -69,9 +76,17 @@ public class UsuarioController {
     })
     @PostMapping(produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<UsuarioResponseDTO> createUsuario(@Valid @RequestBody UsuarioRequestDTO usuarioRequestDTO) {
+
+        Optional<InformacoesTributarias> informacoesTributarias = infoTributariaRepository.findByEstado(usuarioRequestDTO.estado());
+
+        if (informacoesTributarias.isEmpty()) {
+            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+        }
+
         Usuario usuarioConvertido = usuarioMapper.requestToUsuario(usuarioRequestDTO);
 
         usuarioConvertido.setSenha(usuarioRequestDTO.senha());
+        usuarioConvertido.setInformacoesTributarias(informacoesTributarias.get());
 
         Usuario usuarioCriado = usuarioRepository.save(usuarioConvertido);
         UsuarioResponseDTO usuarioResponseDTO = usuarioMapper.usuarioToResponse(usuarioCriado);

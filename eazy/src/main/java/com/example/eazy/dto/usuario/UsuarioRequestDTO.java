@@ -1,7 +1,9 @@
 package com.example.eazy.dto.usuario;
 
+import com.example.eazy.model.Enum_estado;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Pattern;
 import org.hibernate.validator.constraints.Length;
 
@@ -18,5 +20,7 @@ public record UsuarioRequestDTO(
         String telefone,
         @Length(min = 6, max = 20)
         @NotBlank
-        String senha
+        String senha,
+        @NotNull(message = "Estado não pode ser vazio. Informe seu estado.")
+        Enum_estado estado
 ){}

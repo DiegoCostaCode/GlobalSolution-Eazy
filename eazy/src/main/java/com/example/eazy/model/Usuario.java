@@ -28,8 +28,9 @@ public class Usuario {
     @Column(name = "senha")
     private String senha;
 
-    @Column(name = "estado")
-    private String estado;
+    @OneToOne
+    @JoinColumn(name = "id_informacoes_tributarias")
+    private InformacoesTributarias informacoesTributarias;
 
 
     public void setSenha(String senha) {
