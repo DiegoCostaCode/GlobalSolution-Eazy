@@ -28,7 +28,7 @@ public class Usuario {
     @Column(name = "senha")
     private String senha;
 
-    @OneToOne
+    @ManyToOne
     @JoinColumn(name = "id_informacoes_tributarias")
     private InformacoesTributarias informacoesTributarias;
 
