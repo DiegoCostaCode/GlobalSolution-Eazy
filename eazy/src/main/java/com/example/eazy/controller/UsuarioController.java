@@ -161,22 +161,44 @@ public class UsuarioController {
         return new ResponseEntity<>("Usuário deletado com sucesso!", HttpStatus.OK);
     }
 
+    @Operation(summary = "Obtém o consumo e valor total do usuário")
+    @ApiResponses(value = {
+            @ApiResponse(responseCode = "200", description = "Consumo e valor total obtidos com sucesso!"),
+            @ApiResponse(responseCode = "400", description = "Usuário não encontrado.",
+                    content = @Content(schema = @Schema()))
+    })
     @GetMapping(value = "/meu-consumo/{idUsuario}", produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<UsuarioConsumoTotalDTO> getConsumoEValorTotal(@PathVariable Long idUsuario) {
         UsuarioConsumoTotalDTO usuarioConsumoTotalDTO = usuarioService.consumoEValorTotal(idUsuario);
-        return new ResponseEntity<>(usuarioConsumoTotalDTO,HttpStatus.OK);
+        return new ResponseEntity<>(usuarioConsumoTotalDTO, HttpStatus.OK);
     }
 
+    @Operation(summary = "Obtém o menor consumo do usuário")
+    @ApiResponses(value = {
+            @ApiResponse(responseCode = "200", description = "Menor consumo obtido com sucesso!"),
+            @ApiResponse(responseCode = "400", description = "Usuário não encontrado.",
+                    content = @Content(schema = @Schema()))
+    })
     @GetMapping(value = "/meu-consumo/menor/{idUsuario}", produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<ConsumoMenorMaiorDTO> getMenorConsumo(@PathVariable Long idUsuario) {
+        Usuario usuarioEncontrado = usuarioRepository.findById(idUsuario)
+                .orElseThrow(() -> new RuntimeException("Usuário não encontrado"));
         ConsumoMenorMaiorDTO consumoMenor = usuarioService.menorConsumo(idUsuario);
-        return new ResponseEntity<>(consumoMenor,HttpStatus.OK);
+        return new ResponseEntity<>(consumoMenor, HttpStatus.OK);
     }
 
+    @Operation(summary = "Obtém o maior gasto do usuário")
+    @ApiResponses(value = {
+            @ApiResponse(responseCode = "200", description = "Maior gasto obtido com sucesso!"),
+            @ApiResponse(responseCode = "400", description = "Usuário não encontrado.",
+                    content = @Content(schema = @Schema()))
+    })
     @GetMapping(value = "/meu-consumo/maior/{idUsuario}", produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<ConsumoMenorMaiorDTO> getMaiorGasto(@PathVariable Long idUsuario) {
+        Usuario usuarioEncontrado = usuarioRepository.findById(idUsuario)
+                .orElseThrow(() -> new RuntimeException("Usuário não encontrado"));
         ConsumoMenorMaiorDTO consumoMaior = usuarioService.maiorConsumo(idUsuario);
-        return new ResponseEntity<>(consumoMaior,HttpStatus.OK);
+        return new ResponseEntity<>(consumoMaior, HttpStatus.OK);
     }
 }
 

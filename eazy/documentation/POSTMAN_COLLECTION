@@ -1,0 +1,1505 @@
+{
+	"info": {
+		"_postman_id": "d71eaf8c-fc7f-41aa-bb39-161a3ca15029",
+		"name": "GS",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "34573297"
+	},
+	"item": [
+		{
+			"name": "Usuario",
+			"item": [
+				{
+					"name": "BuscarId",
+					"request": {
+						"method": "GET",
+						"header": []
+					},
+					"response": [
+						{
+							"name": "New Request",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:8080/usuario/1",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"usuario",
+										"1"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Vary",
+									"value": "Origin"
+								},
+								{
+									"key": "Vary",
+									"value": "Access-Control-Request-Method"
+								},
+								{
+									"key": "Vary",
+									"value": "Access-Control-Request-Headers"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								},
+								{
+									"key": "Date",
+									"value": "Thu, 21 Nov 2024 01:16:40 GMT"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=60"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"id\": 1,\n    \"usuario\": \"Diego Costa Silva\",\n    \"email\": \"diego@gmail.com\",\n    \"telefone\": \"(011)98227-2082\",\n    \"informacoesTributarias\": {\n        \"id\": 1,\n        \"estado\": \"SãoPaulo\",\n        \"valorKwh\": 0.65,\n        \"ultimaAtualizacao\": \"2024-11-20\"\n    },\n    \"_links\": {\n        \"self\": {\n            \"href\": \"http://localhost:8080/usuario/1\"\n        },\n        \"POST\": {\n            \"href\": \"http://localhost:8080/usuario\"\n        },\n        \"PUT\": {\n            \"href\": \"http://localhost:8080/usuario/1\"\n        },\n        \"DELETE\": {\n            \"href\": \"http://localhost:8080/usuario/1\"\n        }\n    }\n}"
+						}
+					]
+				},
+				{
+					"name": "Criar",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "\r\n{\"nome\":\"Diego Costa Silva\",\"email\":\"diego@gmail.com\",\"senha\":\"diego123\",\"telefone\":\"(011)98227-2082\",\"estado\":\"SãoPaulo\"}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/usuario",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"usuario"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Criar",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "\r\n{\r\n\"usuario\":\"Diego Costa Silva\",\r\n\"email\":\"diego@gmail.com\",\r\n\"senha\":\"diego123\",\r\n\"telefone\":\"(011)98227-2082\",\r\n\"estado\":\"SãoPaulo\"\r\n}\r\n\r\n",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:8080/usuario",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"usuario"
+									]
+								}
+							},
+							"status": "Created",
+							"code": 201,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Vary",
+									"value": "Origin"
+								},
+								{
+									"key": "Vary",
+									"value": "Access-Control-Request-Method"
+								},
+								{
+									"key": "Vary",
+									"value": "Access-Control-Request-Headers"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								},
+								{
+									"key": "Date",
+									"value": "Thu, 21 Nov 2024 01:16:28 GMT"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=60"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"id\": 1,\n    \"usuario\": \"Diego Costa Silva\",\n    \"email\": \"diego@gmail.com\",\n    \"telefone\": \"(011)98227-2082\",\n    \"informacoesTributarias\": {\n        \"id\": 1,\n        \"estado\": \"SãoPaulo\",\n        \"valorKwh\": 0.65,\n        \"ultimaAtualizacao\": \"2024-11-20\"\n    }\n}"
+						}
+					]
+				},
+				{
+					"name": "Login",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"email\":\"diego@gmail.com\",\r\n    \"senha\":\"diego_2022@\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/usuario/login",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"usuario",
+								"login"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Login de usuario",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"email\":\"diego@gmail.com\",\r\n    \"senha\":\"diego123\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:8080/usuario/login",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"usuario",
+										"login"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Vary",
+									"value": "Origin"
+								},
+								{
+									"key": "Vary",
+									"value": "Access-Control-Request-Method"
+								},
+								{
+									"key": "Vary",
+									"value": "Access-Control-Request-Headers"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Content-Length",
+									"value": "18"
+								},
+								{
+									"key": "Date",
+									"value": "Thu, 21 Nov 2024 01:16:46 GMT"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=60"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								}
+							],
+							"cookie": [],
+							"body": "Login bem-sucedido"
+						}
+					]
+				},
+				{
+					"name": "Delete",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/usuario/1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"usuario",
+								"1"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Deletar cadastro",
+							"originalRequest": {
+								"method": "DELETE",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:8080/usuario/1",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"usuario",
+										"1"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Vary",
+									"value": "Origin"
+								},
+								{
+									"key": "Vary",
+									"value": "Access-Control-Request-Method"
+								},
+								{
+									"key": "Vary",
+									"value": "Access-Control-Request-Headers"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Content-Length",
+									"value": "30"
+								},
+								{
+									"key": "Date",
+									"value": "Thu, 21 Nov 2024 01:21:51 GMT"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=60"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								}
+							],
+							"cookie": [],
+							"body": "Usuário deletado com sucesso!"
+						}
+					]
+				},
+				{
+					"name": "Atualizar",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/usuario/1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"usuario",
+								"1"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Atualizar-cadastro",
+							"originalRequest": {
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n\"usuario\":\"Diego Costa Silva\",\r\n\"email\":\"diego@gmail.com\",\r\n\"senha\":\"diego321\",\r\n\"telefone\":\"(011)98227-2082\",\r\n\"estado\":\"SãoPaulo\"\r\n}\r\n\r\n",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:8080/usuario/1",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"usuario",
+										"1"
+									]
+								}
+							},
+							"status": "No Content",
+							"code": 204,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Vary",
+									"value": "Origin"
+								},
+								{
+									"key": "Vary",
+									"value": "Access-Control-Request-Method"
+								},
+								{
+									"key": "Vary",
+									"value": "Access-Control-Request-Headers"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Date",
+									"value": "Thu, 21 Nov 2024 01:17:19 GMT"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=60"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								}
+							],
+							"cookie": [],
+							"body": null
+						}
+					]
+				},
+				{
+					"name": "ConsumoTotal",
+					"request": {
+						"method": "GET",
+						"header": []
+					},
+					"response": [
+						{
+							"name": "Relatorio consumo total",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:8080/usuario/meu-consumo/1",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"usuario",
+										"meu-consumo",
+										"1"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Vary",
+									"value": "Origin"
+								},
+								{
+									"key": "Vary",
+									"value": "Access-Control-Request-Method"
+								},
+								{
+									"key": "Vary",
+									"value": "Access-Control-Request-Headers"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								},
+								{
+									"key": "Date",
+									"value": "Thu, 21 Nov 2024 01:19:55 GMT"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=60"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"TotalKwhConsumo\": 200,\n    \"ValorGastoEmReais\": 300,\n    \"De\": \"2024-05-13\",\n    \"Ate\": \"2024-06-13\"\n}"
+						}
+					]
+				},
+				{
+					"name": "ConsumoMenor",
+					"request": {
+						"method": "GET",
+						"header": []
+					},
+					"response": [
+						{
+							"name": "Menor consumo",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:8080/usuario/meu-consumo/menor/1",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"usuario",
+										"meu-consumo",
+										"menor",
+										"1"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Vary",
+									"value": "Origin"
+								},
+								{
+									"key": "Vary",
+									"value": "Access-Control-Request-Method"
+								},
+								{
+									"key": "Vary",
+									"value": "Access-Control-Request-Headers"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								},
+								{
+									"key": "Date",
+									"value": "Thu, 21 Nov 2024 01:20:18 GMT"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=60"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"gasto\": 100,\n    \"data\": \"2024-05-13\"\n}"
+						}
+					]
+				},
+				{
+					"name": "ConsumoMaior",
+					"request": {
+						"method": "GET",
+						"header": []
+					},
+					"response": [
+						{
+							"name": "Maior consumo",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:8080/usuario/meu-consumo/maior/1",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"usuario",
+										"meu-consumo",
+										"maior",
+										"1"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Vary",
+									"value": "Origin"
+								},
+								{
+									"key": "Vary",
+									"value": "Access-Control-Request-Method"
+								},
+								{
+									"key": "Vary",
+									"value": "Access-Control-Request-Headers"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								},
+								{
+									"key": "Date",
+									"value": "Thu, 21 Nov 2024 01:20:39 GMT"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=60"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"gasto\": 200,\n    \"data\": \"2024-06-13\"\n}"
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "Conta",
+			"item": [
+				{
+					"name": "Criar",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"kwh\":500.0,\r\n    \"valor\":600.0,\r\n    \"data\":\"2024-11-14\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/conta/2",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"conta",
+								"2"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Registrar conta",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"kwh\":100.0,\r\n    \"valor\":100.0,\r\n    \"data\":\"2024-05-14\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:8080/conta/1",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"conta",
+										"1"
+									]
+								}
+							},
+							"status": "Created",
+							"code": 201,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Vary",
+									"value": "Origin"
+								},
+								{
+									"key": "Vary",
+									"value": "Access-Control-Request-Method"
+								},
+								{
+									"key": "Vary",
+									"value": "Access-Control-Request-Headers"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								},
+								{
+									"key": "Date",
+									"value": "Thu, 21 Nov 2024 01:17:45 GMT"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=60"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"id\": 1,\n    \"kwh\": 100,\n    \"valor\": 100,\n    \"data\": \"2024-05-13\",\n    \"usuario\": {\n        \"id\": 1,\n        \"usuario\": \"Diego Costa Silva\",\n        \"email\": \"diego@gmail.com\",\n        \"telefone\": \"(011)98227-2082\",\n        \"informacoesTributarias\": {\n            \"id\": 1,\n            \"estado\": \"SãoPaulo\",\n            \"valorKwh\": 0.65,\n            \"ultimaAtualizacao\": \"2024-11-20\"\n        }\n    }\n}"
+						}
+					]
+				},
+				{
+					"name": "BuscarId",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/conta/2",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"conta",
+								"2"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Buscar conta",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:8080/conta/1",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"conta",
+										"1"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Vary",
+									"value": "Origin"
+								},
+								{
+									"key": "Vary",
+									"value": "Access-Control-Request-Method"
+								},
+								{
+									"key": "Vary",
+									"value": "Access-Control-Request-Headers"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								},
+								{
+									"key": "Date",
+									"value": "Thu, 21 Nov 2024 01:18:04 GMT"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=60"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"id\": 1,\n    \"kwh\": 100,\n    \"valor\": 100,\n    \"data\": \"2024-05-13\",\n    \"usuario\": {\n        \"id\": 1,\n        \"usuario\": \"Diego Costa Silva\",\n        \"email\": \"diego@gmail.com\",\n        \"telefone\": \"(011)98227-2082\",\n        \"informacoesTributarias\": {\n            \"id\": 1,\n            \"estado\": \"SãoPaulo\",\n            \"valorKwh\": 0.65,\n            \"ultimaAtualizacao\": \"2024-11-20\"\n        }\n    },\n    \"_links\": {\n        \"self\": {\n            \"href\": \"http://localhost:8080/conta/1\"\n        },\n        \"GET\": {\n            \"href\": \"http://localhost:8080/conta/usuario/{usuario}\",\n            \"templated\": true\n        },\n        \"POST\": {\n            \"href\": \"http://localhost:8080/conta/{idUsuario}\",\n            \"templated\": true\n        },\n        \"PUT\": {\n            \"href\": \"http://localhost:8080/conta/1\"\n        },\n        \"DELETE\": {\n            \"href\": \"http://localhost:8080/conta/1\"\n        }\n    }\n}"
+						}
+					]
+				},
+				{
+					"name": "Atualizar",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"kwh\":500.0,\r\n    \"valor\":600.0,\r\n    \"data\":\"2024-10-14\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/conta/1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"conta",
+								"1"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Atualizar conta",
+							"originalRequest": {
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"kwh\":100.0,\r\n    \"valor\":150.0,\r\n    \"data\":\"2024-05-14\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:8080/conta/1",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"conta",
+										"1"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Vary",
+									"value": "Origin"
+								},
+								{
+									"key": "Vary",
+									"value": "Access-Control-Request-Method"
+								},
+								{
+									"key": "Vary",
+									"value": "Access-Control-Request-Headers"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								},
+								{
+									"key": "Date",
+									"value": "Thu, 21 Nov 2024 01:18:43 GMT"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=60"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"id\": 1,\n    \"kwh\": 100,\n    \"valor\": 150,\n    \"data\": \"2024-05-13\",\n    \"usuario\": {\n        \"id\": 1,\n        \"usuario\": \"Diego Costa Silva\",\n        \"email\": \"diego@gmail.com\",\n        \"telefone\": \"(011)98227-2082\",\n        \"informacoesTributarias\": {\n            \"id\": 1,\n            \"estado\": \"SãoPaulo\",\n            \"valorKwh\": 0.65,\n            \"ultimaAtualizacao\": \"2024-11-20\"\n        }\n    }\n}"
+						}
+					]
+				},
+				{
+					"name": "Deletar",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/conta/2",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"conta",
+								"2"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Deletar conta",
+							"originalRequest": {
+								"method": "DELETE",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:8080/conta/2",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"conta",
+										"2"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Vary",
+									"value": "Origin"
+								},
+								{
+									"key": "Vary",
+									"value": "Access-Control-Request-Method"
+								},
+								{
+									"key": "Vary",
+									"value": "Access-Control-Request-Headers"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Content-Length",
+									"value": "26"
+								},
+								{
+									"key": "Date",
+									"value": "Thu, 21 Nov 2024 01:21:10 GMT"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=60"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								}
+							],
+							"cookie": [],
+							"body": "Conta deletada com sucesso"
+						}
+					]
+				},
+				{
+					"name": "BuscarIdUsuario",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/conta/usuario/6",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"conta",
+								"usuario",
+								"6"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Contas do usuario",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:8080/conta/usuario/1",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"conta",
+										"usuario",
+										"1"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Vary",
+									"value": "Origin"
+								},
+								{
+									"key": "Vary",
+									"value": "Access-Control-Request-Method"
+								},
+								{
+									"key": "Vary",
+									"value": "Access-Control-Request-Headers"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								},
+								{
+									"key": "Date",
+									"value": "Thu, 21 Nov 2024 01:18:56 GMT"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=60"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								}
+							],
+							"cookie": [],
+							"body": "[\n    {\n        \"id\": 1,\n        \"kwh\": 100,\n        \"valor\": 150,\n        \"data\": \"2024-05-13\",\n        \"usuario\": {\n            \"id\": 1,\n            \"usuario\": \"Diego Costa Silva\",\n            \"email\": \"diego@gmail.com\",\n            \"telefone\": \"(011)98227-2082\",\n            \"informacoesTributarias\": {\n                \"id\": 1,\n                \"estado\": \"SãoPaulo\",\n                \"valorKwh\": 0.65,\n                \"ultimaAtualizacao\": \"2024-11-20\"\n            }\n        },\n        \"links\": [\n            {\n                \"rel\": \"self\",\n                \"href\": \"http://localhost:8080/conta/usuario/{usuario}\"\n            },\n            {\n                \"rel\": \"GET\",\n                \"href\": \"http://localhost:8080/conta/1\"\n            },\n            {\n                \"rel\": \"POST\",\n                \"href\": \"http://localhost:8080/conta/{idUsuario}\"\n            },\n            {\n                \"rel\": \"PUT\",\n                \"href\": \"http://localhost:8080/conta/1\"\n            },\n            {\n                \"rel\": \"DELETE\",\n                \"href\": \"http://localhost:8080/conta/1\"\n            }\n        ]\n    }\n]"
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "Informações Tributárias",
+			"item": [
+				{
+					"name": "BuscarTodos",
+					"request": {
+						"method": "GET",
+						"header": []
+					},
+					"response": [
+						{
+							"name": "Buscar estados",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:8080/infoTriburaria",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"infoTriburaria"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Vary",
+									"value": "Origin"
+								},
+								{
+									"key": "Vary",
+									"value": "Access-Control-Request-Method"
+								},
+								{
+									"key": "Vary",
+									"value": "Access-Control-Request-Headers"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								},
+								{
+									"key": "Date",
+									"value": "Thu, 21 Nov 2024 01:22:16 GMT"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=60"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								}
+							],
+							"cookie": [],
+							"body": "[\n    {\n        \"id\": 1,\n        \"estado\": \"SãoPaulo\",\n        \"valorKwh\": 0.65,\n        \"ultimaAtualizacao\": \"2024-11-20\",\n        \"links\": [\n            {\n                \"rel\": \"self\",\n                \"href\": \"http://localhost:8080/infoTriburaria\"\n            },\n            {\n                \"rel\": \"GET\",\n                \"href\": \"http://localhost:8080/infoTriburaria/1\"\n            },\n            {\n                \"rel\": \"GET\",\n                \"href\": \"http://localhost:8080/infoTriburaria/estado/S%C3%A3oPaulo\"\n            },\n            {\n                \"rel\": \"POST\",\n                \"href\": \"http://localhost:8080/infoTriburaria\"\n            },\n            {\n                \"rel\": \"DELETE\",\n                \"href\": \"http://localhost:8080/infoTriburaria/1\"\n            },\n            {\n                \"rel\": \"update\",\n                \"href\": \"http://localhost:8080/infoTriburaria/1\"\n            }\n        ]\n    }\n]"
+						}
+					]
+				},
+				{
+					"name": "Criar",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/infoTriburaria",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"infoTriburaria"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Criar",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"estado\":\"SãoPaulo\",\r\n    \"valorKwh\":0.65\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:8080/infoTriburaria",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"infoTriburaria"
+									]
+								}
+							},
+							"status": "Created",
+							"code": 201,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Vary",
+									"value": "Origin"
+								},
+								{
+									"key": "Vary",
+									"value": "Access-Control-Request-Method"
+								},
+								{
+									"key": "Vary",
+									"value": "Access-Control-Request-Headers"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								},
+								{
+									"key": "Date",
+									"value": "Thu, 21 Nov 2024 01:16:05 GMT"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=60"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"id\": 1,\n    \"estado\": \"SãoPaulo\",\n    \"valorKwh\": 0.65,\n    \"ultimaAtualizacao\": \"2024-11-20\"\n}"
+						}
+					]
+				},
+				{
+					"name": "Atualizar",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "        {\r\n        \"estado\": \"Ceará\",\r\n        \"valorKwh\": 0.74\r\n        }",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/infoTriburaria/1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"infoTriburaria",
+								"1"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Atualizar informacoes",
+							"originalRequest": {
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"estado\":\"SãoPaulo\",\r\n    \"valorKwh\":1\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:8080/infoTriburaria/1",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"infoTriburaria",
+										"1"
+									]
+								}
+							},
+							"status": "No Content",
+							"code": 204,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Vary",
+									"value": "Origin"
+								},
+								{
+									"key": "Vary",
+									"value": "Access-Control-Request-Method"
+								},
+								{
+									"key": "Vary",
+									"value": "Access-Control-Request-Headers"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Date",
+									"value": "Thu, 21 Nov 2024 01:22:46 GMT"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=60"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								}
+							],
+							"cookie": [],
+							"body": null
+						}
+					]
+				},
+				{
+					"name": "BuscarById",
+					"request": {
+						"method": "GET",
+						"header": []
+					},
+					"response": [
+						{
+							"name": "Buscar estado por Id",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:8080/infoTriburaria/1",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"infoTriburaria",
+										"1"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Vary",
+									"value": "Origin"
+								},
+								{
+									"key": "Vary",
+									"value": "Access-Control-Request-Method"
+								},
+								{
+									"key": "Vary",
+									"value": "Access-Control-Request-Headers"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								},
+								{
+									"key": "Date",
+									"value": "Thu, 21 Nov 2024 01:23:03 GMT"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=60"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"id\": 1,\n    \"estado\": \"SãoPaulo\",\n    \"valorKwh\": 1,\n    \"ultimaAtualizacao\": \"2024-11-20\",\n    \"_links\": {\n        \"self\": [\n            {\n                \"href\": \"http://localhost:8080/infoTriburaria/1\"\n            },\n            {\n                \"href\": \"http://localhost:8080/infoTriburaria/estado/S%C3%A3oPaulo\"\n            }\n        ],\n        \"GET\": {\n            \"href\": \"http://localhost:8080/infoTriburaria\"\n        },\n        \"POST\": {\n            \"href\": \"http://localhost:8080/infoTriburaria\"\n        },\n        \"PUT\": {\n            \"href\": \"http://localhost:8080/infoTriburaria/1\"\n        },\n        \"DELETE\": {\n            \"href\": \"http://localhost:8080/infoTriburaria/1\"\n        }\n    }\n}"
+						}
+					]
+				},
+				{
+					"name": "BuscarByEstado",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/infoTriburaria/Ceara",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"infoTriburaria",
+								"Ceara"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Buscar por estado",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:8080/infoTriburaria/estado/SãoPaulo",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"infoTriburaria",
+										"estado",
+										"SãoPaulo"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Vary",
+									"value": "Origin"
+								},
+								{
+									"key": "Vary",
+									"value": "Access-Control-Request-Method"
+								},
+								{
+									"key": "Vary",
+									"value": "Access-Control-Request-Headers"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								},
+								{
+									"key": "Date",
+									"value": "Thu, 21 Nov 2024 01:23:21 GMT"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=60"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"id\": 1,\n    \"estado\": \"SãoPaulo\",\n    \"valorKwh\": 1,\n    \"ultimaAtualizacao\": \"2024-11-20\",\n    \"_links\": {\n        \"self\": {\n            \"href\": \"http://localhost:8080/infoTriburaria/estado/S%C3%A3oPaulo\"\n        },\n        \"GET\": [\n            {\n                \"href\": \"http://localhost:8080/infoTriburaria/1\"\n            },\n            {\n                \"href\": \"http://localhost:8080/infoTriburaria\"\n            }\n        ],\n        \"POST\": {\n            \"href\": \"http://localhost:8080/infoTriburaria\"\n        },\n        \"PUT\": {\n            \"href\": \"http://localhost:8080/infoTriburaria/1\"\n        },\n        \"DELETE\": {\n            \"href\": \"http://localhost:8080/infoTriburaria/1\"\n        }\n    }\n}"
+						}
+					]
+				}
+			]
+		}
+	]
+}
