@@ -49,7 +49,8 @@ E, ver o teste da API aqui: [testando na VM](https://www.youtube.com/watch?v=Y0T
 
 Abaixo, se enontra as tabelas que explanam quais os endpoints presentes no projeto:
 
-Na pasta **```Documentation\```** do projeto, se encontra a collection do Postman para que você possa acessar facilmente os endpoints. Mas também temos o [**Swagger**](http://localhost:8080/swagger-ui/index.html#/Usuario/login).
+Na pasta [**```Documentation\```**](https://github.com/DiegoCostaCode/GlobalSolution-Eazy-Java/blob/master/eazy/documentation/POSTMAN_COLLECTION) do projeto, se encontra a collection do Postman para que você possa acessar facilmente os endpoints. Mas também temos o [**Swagger**](http://localhost:8080/swagger-ui/index.html#/Usuario/login).
+
 
 **Tabela de Usuário**
 | **Grupo**   | **Endpoint**   | **Método** | **URL**                             | **Descrição**                                                                                           |
