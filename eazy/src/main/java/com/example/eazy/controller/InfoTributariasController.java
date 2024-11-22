@@ -25,6 +25,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Map;
 import java.util.stream.Collectors;
 
 import static org.springframework.hateoas.server.mvc.WebMvcLinkBuilder.linkTo;
@@ -141,7 +142,7 @@ public class InfoTributariasController {
                     content = @Content(schema = @Schema()))
     })
     @PutMapping(value = ("/{idInfosTribu}"), produces = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<InfoTribuResponseDTO> updateInfosTributaria(@PathVariable Long idInfosTribu, @Valid @RequestBody InfoTribuRequestDTO infoTribuRequestDTO) {
+    public ResponseEntity<Map<String, String>> updateInfosTributaria(@PathVariable Long idInfosTribu, @Valid @RequestBody InfoTribuRequestDTO infoTribuRequestDTO) {
 
        InformacoesTributarias infoTribuEncontrada = infoTributariaRepository.findById(idInfosTribu)
                 .orElseThrow(() -> new RuntimeException("Informação Tributária não encontrada"));
@@ -152,7 +153,7 @@ public class InfoTributariasController {
         InformacoesTributarias informacoesAtualizado = infoTributariaRepository.save(infoTribuEncontrada);
         InfoTribuResponseDTO infoTribuResponseDTO = infoTributariasMapper.infoTributariasResponseDTO(informacoesAtualizado);
 
-        return new ResponseEntity<>(infoTribuResponseDTO, HttpStatus.NO_CONTENT);
+        return new ResponseEntity<Map<String, String>>(Map.of("SUCESS","Informações tributárias atualizadas com sucesso!"), HttpStatus.NO_CONTENT);
     }
 
     @Operation(summary = "Deleta informações tributárias")
@@ -162,13 +163,13 @@ public class InfoTributariasController {
                     content = @Content(schema = @Schema()))
     })
     @DeleteMapping(value = "/{idInfosTribu}", produces = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<String> deleteInfoTributaria(@PathVariable Long idInfosTribu) {
+    public ResponseEntity<Map<String, String>> deleteInfoTributaria(@PathVariable Long idInfosTribu) {
 
         InformacoesTributarias infoTribuEncontrada = infoTributariaRepository.findById(idInfosTribu)
                 .orElseThrow(() -> new RuntimeException("Informação Tributária não encontrada"));
 
         infoTributariaRepository.delete(infoTribuEncontrada);
 
-        return new ResponseEntity<>("Informações tributárias deletada com sucesso!", HttpStatus.OK);
+        return new ResponseEntity<Map<String, String>>(Map.of("SUCESS","Informações tributárias atualizadas com sucesso!"), HttpStatus.OK);
     }
 }

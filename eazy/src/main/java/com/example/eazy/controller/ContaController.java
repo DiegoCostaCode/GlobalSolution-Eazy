@@ -25,6 +25,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Map;
 import java.util.stream.Collectors;
 
 import static org.springframework.hateoas.server.mvc.WebMvcLinkBuilder.linkTo;
@@ -104,18 +105,17 @@ public class ContaController {
     })
     @PostMapping(value = ("/{idUsuario}"), produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<ContaResponseDTO> createConta(@PathVariable Long idUsuario, @Valid @RequestBody ContaRequestDTO contaRequestDTO) {
+        Usuario usuarioConta = usuarioRepository.findById(idUsuario)
+                .orElseThrow(() -> new RuntimeException("Usuário não encontrado"));
 
-    Usuario usuarioConta = usuarioRepository.findById(idUsuario)
-            .orElseThrow(() -> new RuntimeException("Usuário não encontrado"));
+        Conta contaConvertida = contaMapper.contaEletricaToRequest(contaRequestDTO);
 
-    Conta contaConvertida = contaMapper.contaEletricaToRequest(contaRequestDTO);
+        contaConvertida.setUsuario(usuarioConta);
+        Conta conta = contaRepository.save(contaConvertida);
 
-    contaConvertida.setUsuario(usuarioConta);
-    Conta conta = contaRepository.save(contaConvertida);
+        ContaResponseDTO contaResponseDTO = contaMapper.contaEletricaToResponse(conta);
 
-    ContaResponseDTO contaResponseDTO = contaMapper.contaEletricaToResponse(conta);
-
-    return new ResponseEntity<>(contaResponseDTO, HttpStatus.CREATED);
+        return new ResponseEntity<>(contaResponseDTO, HttpStatus.CREATED);
     }
 
     @Operation(summary = "Atualiza uma conta e salva no banco de dados")
@@ -125,7 +125,7 @@ public class ContaController {
                     content = @Content(schema = @Schema()))
     })
     @PutMapping(value = ("/{idConta}"), produces = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<ContaResponseDTO> updateConta(@PathVariable Long idConta, @Valid @RequestBody ContaRequestDTO contaRequestDTO) {
+    public ResponseEntity<Map<String, String>> updateConta(@PathVariable Long idConta, @Valid @RequestBody ContaRequestDTO contaRequestDTO) {
         Conta conta = contaRepository.findById(idConta)
                 .orElseThrow(() -> new RuntimeException("Conta não encontrada"));
 
@@ -136,7 +136,7 @@ public class ContaController {
         Conta contaAtualizada = contaRepository.save(conta);
         ContaResponseDTO contaResponseDTO = contaMapper.contaEletricaToResponse(contaAtualizada);
 
-        return new ResponseEntity<>(contaResponseDTO, HttpStatus.OK);
+        return new ResponseEntity<Map<String, String>>(Map.of("SUCESS","Conta atualizada com sucesso!"), HttpStatus.OK);
     }
 
     @Operation(summary = "Delete uma conta")
@@ -146,14 +146,13 @@ public class ContaController {
                     content = @Content(schema = @Schema()))
     })
     @DeleteMapping(value = ("/{idConta}"), produces = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<String> deleteConta(@PathVariable Long idConta) {
-
+    public ResponseEntity<Map<String, String>> deleteConta(@PathVariable Long idConta) {
         Conta conta = contaRepository.findById(idConta)
                 .orElseThrow(() -> new RuntimeException("Conta não encontrada"));
 
         contaRepository.delete(conta);
 
-        return new ResponseEntity<>("Conta deletada com sucesso", HttpStatus.OK);
+        return new ResponseEntity<Map<String, String>>(Map.of("SUCESS","Conta deletada com sucesso!"), HttpStatus.OK);
     }
 
 }

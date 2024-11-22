@@ -23,6 +23,7 @@ import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.Map;
 import java.util.Optional;
 
 import static org.springframework.hateoas.server.mvc.WebMvcLinkBuilder.linkTo;
@@ -104,19 +105,19 @@ public class UsuarioController {
 
     })
     @PostMapping(value = "/login", produces = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<String> login(@Valid @RequestBody UsuarioLoginDTO usuarioLoginDTO) {
+    public ResponseEntity<Map<String, String>> login(@Valid @RequestBody UsuarioLoginDTO usuarioLoginDTO) {
 
         Optional<Usuario> usuarioEncontrado = usuarioRepository.findByEmail(usuarioLoginDTO.email());
 
         if (usuarioEncontrado.isEmpty()) {
-            return new ResponseEntity<String>("Nenhum usuário com este e-mail!",HttpStatus.BAD_REQUEST);
+            return new ResponseEntity<Map<String, String>>(Map.of("ERRO","Nenhum usuário bem-sucedido!"),HttpStatus.BAD_REQUEST);
         }
 
         if (!usuarioEncontrado.get().verificarSenha(usuarioLoginDTO.senha())) {
-            return new ResponseEntity<String>("Senha incorreta!",HttpStatus.UNAUTHORIZED);
+            return new ResponseEntity<Map<String, String>>(Map.of("ERRO","Senha incorreta!"),HttpStatus.UNAUTHORIZED);
         }
 
-        return new ResponseEntity<String>("Login bem-sucedido", HttpStatus.OK);
+        return new ResponseEntity<Map<String, String>>(Map.of("SUCESS","Login bem-sucedido!"), HttpStatus.OK);
     }
 
     @Operation(summary = "Atualiza informações do usuário")
@@ -126,7 +127,7 @@ public class UsuarioController {
                     content = @Content(schema = @Schema()))
     })
     @PutMapping(value = ("/{idUsuario}"), produces = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<UsuarioResponseDTO> updateUsuario(@PathVariable Long idUsuario, @Valid @RequestBody UsuarioRequestDTO usuarioRequestDTO) {
+    public ResponseEntity<Map<String, String>> updateUsuario(@PathVariable Long idUsuario, @Valid @RequestBody UsuarioRequestDTO usuarioRequestDTO) {
         Usuario usuarioEncontrado = usuarioRepository.findById(idUsuario)
                 .orElseThrow(() -> new RuntimeException("Usuário não encontrado"));
 
@@ -141,7 +142,7 @@ public class UsuarioController {
         Usuario usuarioAtualizado = usuarioRepository.save(usuarioEncontrado);
         UsuarioResponseDTO usuarioResponseDTO = usuarioMapper.usuarioToResponse(usuarioAtualizado);
 
-        return new ResponseEntity<>(usuarioResponseDTO, HttpStatus.NO_CONTENT);
+        return new ResponseEntity<Map<String, String>>(Map.of("SUCESS","Usuário atualizado com sucesso!"), HttpStatus.NO_CONTENT);
     }
 
     @Operation(summary = "Deleta um usuário")
@@ -152,13 +153,13 @@ public class UsuarioController {
 
     })
     @DeleteMapping(value = "/{idUsuario}", produces = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<String> deleteUsuario(@PathVariable Long idUsuario) {
+    public ResponseEntity<Map<String, String>> deleteUsuario(@PathVariable Long idUsuario) {
         Usuario usuarioEncontrado = usuarioRepository.findById(idUsuario)
                 .orElseThrow(() -> new RuntimeException("Usuário não encontrado"));
 
         usuarioRepository.delete(usuarioEncontrado);
 
-        return new ResponseEntity<>("Usuário deletado com sucesso!", HttpStatus.OK);
+        return new ResponseEntity<Map<String, String>>(Map.of("SUCESS","Usuário deletado com sucesso!"), HttpStatus.OK);
     }
 
     @Operation(summary = "Obtém o consumo e valor total do usuário")
