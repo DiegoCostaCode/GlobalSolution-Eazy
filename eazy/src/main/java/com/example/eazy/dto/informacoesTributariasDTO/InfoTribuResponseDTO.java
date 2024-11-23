@@ -1,13 +1,13 @@
 package com.example.eazy.dto.informacoesTributariasDTO;
 
-import com.example.eazy.model.Enum_estado;
+import com.example.eazy.model.Estado;
 
 import java.util.Date;
 
 public record InfoTribuResponseDTO
         (
                 long id,
-                Enum_estado estado,
+                Estado estado,
                 double valorKwh,
                 Date ultimaAtualizacao
         ){

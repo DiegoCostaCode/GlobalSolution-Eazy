@@ -2,13 +2,9 @@ package com.example.eazy.controller;
 
 import com.example.eazy.dto.informacoesTributariasDTO.InfoTribuRequestDTO;
 import com.example.eazy.dto.informacoesTributariasDTO.InfoTribuResponseDTO;
-import com.example.eazy.dto.usuario.UsuarioLoginDTO;
-import com.example.eazy.dto.usuario.UsuarioRequestDTO;
-import com.example.eazy.dto.usuario.UsuarioResponseDTO;
 import com.example.eazy.mapper.InfoTributariasMapper;
-import com.example.eazy.model.Enum_estado;
+import com.example.eazy.model.Estado;
 import com.example.eazy.model.InformacoesTributarias;
-import com.example.eazy.model.Usuario;
 import com.example.eazy.repository.InfoTributariaRepository;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.media.Content;
@@ -76,7 +72,7 @@ public class InfoTributariasController {
 
     })
     @GetMapping(value = "/estado/{estado}", produces = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<EntityModel<InfoTribuResponseDTO>> findInformacoesByEstado(@PathVariable Enum_estado estado) {
+    public ResponseEntity<EntityModel<InfoTribuResponseDTO>> findInformacoesByEstado(@PathVariable Estado estado) {
         InformacoesTributarias infoTributariaEncontrada = infoTributariaRepository.findByEstado(estado)
                 .orElseThrow(() -> new RuntimeException("Informação tributária não encontrada"));
 

@@ -1,6 +1,6 @@
 package com.example.eazy.model;
 
-public enum Enum_estado
+public enum Estado
         {
             Acre("Acre"),
             Alagoas("Alagoas"),
@@ -32,7 +32,7 @@ public enum Enum_estado
 
             private String estado;
 
-            Enum_estado(String descricao) {
+            Estado(String descricao) {
                 this.estado = descricao;
             }
 

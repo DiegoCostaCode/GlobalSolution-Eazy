@@ -1,9 +1,8 @@
 package com.example.eazy.dto.conta;
 
 import com.example.eazy.dto.usuario.UsuarioResponseDTO;
-import com.example.eazy.model.Usuario;
 
-import java.sql.Date;
+import java.util.Date;
 
 public record ContaResponseDTO
         (

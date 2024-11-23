@@ -1,13 +1,10 @@
 package com.example.eazy.model;
 
 import jakarta.persistence.*;
-import lombok.Data;
 import lombok.Getter;
 import lombok.Setter;
-import org.springframework.format.annotation.DateTimeFormat;
 
 import java.sql.Date;
-import java.time.LocalDateTime;
 
 @Getter
 @Setter
@@ -20,7 +17,7 @@ public class InformacoesTributarias {
 
     @Enumerated(EnumType.STRING)
     @Column(name = "estado", unique = true)
-    private Enum_estado estado;
+    private Estado estado;
 
     @Column(name = "valorKwh")
     private double valorKwh;
